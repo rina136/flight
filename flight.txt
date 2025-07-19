@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Flight {
+    int id;
+    char origin[20];
+    char destination[20];
+    float price;
+};
+
+struct Passenger {
+    char name[50];
+    int age;
+    char gender;
+};
+
+int main() {
+    struct Flight flights[3] = {
+        {101, "Mumbai", "Delhi", 4500.0},
+        {102, "Bangalore", "Chennai", 3200.0},
+        {103, "Kolkata", "Hyderabad", 3800.0}
+    };
+
+    struct Passenger p;
+    int choice;
+
+    printf("Available Flights:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%d. %s → %s  (₹%.2f)\n", flights[i].id, flights[i].origin, flights[i].destination, flights[i].price);
+    }
+
+    printf("\nEnter Flight ID to book: ");
+    scanf("%d", &choice);
+
+    int selected = -1;
+    for (int i = 0; i < 3; i++) {
+        if (flights[i].id == choice) {
+            selected = i;
+            break;
+        }
+    }
+
+    if (selected == -1) {
+        printf("Invalid flight ID. Exiting.\n");
+        return 1;
+    }
+
+    printf("Enter Name: ");
+    scanf(" %[^\n]", p.name); // reads full name
+    printf("Enter Age: ");
+    scanf("%d", &p.age);
+    printf("Enter Gender (M/F): ");
+    scanf(" %c", &p.gender);
+
+    printf("\n Booking Confirmed!\n");
+    printf("------------------------\n");
+    printf("Name     : %s\n", p.name);
+    printf("Age      : %d\n", p.age);
+    printf("Gender   : %c\n", p.gender);
+    printf("Flight   : %s → %s\n", flights[selected].origin, flights[selected].destination);
+    printf("Fare     : ₹%.2f\n", flights[selected].price);
+    printf("Flight ID: %d\n", flights[selected].id);
+    printf("------------------------\n");
+
+    return 0;
+}
+
